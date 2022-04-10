@@ -5,6 +5,7 @@ import decode from 'jwt-decode'
 import { LOGOUT } from '../../constants/actionTypes'
 
 import { Box, Flex, Spacer, Heading, Button, Text } from '@chakra-ui/react'
+import { ColorModeSwitcher } from '../../ColorModeSwitcher'
 
 const Navbar = () => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')))
@@ -28,7 +29,7 @@ const Navbar = () => {
             logout()
           }
         }
-        
+
         setUser(JSON.parse(localStorage.getItem('profile')))
     }, [location])
 
@@ -41,6 +42,7 @@ const Navbar = () => {
             <Spacer />
 
             <Box>
+                <ColorModeSwitcher mr={3} />
                 {user?.result ? (
                     <>
                         <Text>Welcome! {user?.result.name}</Text>

@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css'
-import { ChakraProvider } from '@chakra-ui/react'
+import { ColorModeScript } from '@chakra-ui/react';
 
 // REDUX 
 import { Provider } from 'react-redux'
@@ -13,8 +13,6 @@ const store = createStore(reducers, {}, compose(applyMiddleware(thunk)))
 
 ReactDOM.render(
     <Provider store={store}>
-        <ChakraProvider>
-            <App />
-        </ChakraProvider>
+        <ColorModeScript/><App />
     </Provider>
 , document.getElementById('root'))
