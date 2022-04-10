@@ -8,7 +8,7 @@ export const Footer = () => {
             <Text fontSize="sm" color="subtle">&copy; 2022 Yousof Algburi. All rights reserved.</Text>
             <ButtonGroup variant="ghost">
                 <IconButton target="_blank" as="a" href="https://www.linkedin.com/in/yousof-algburi-410b84209/" aria-label="LinkedIn" icon={<FaLinkedin fontSize="1.25rem" />}/>
-                <IconButton targe="_blank" as="a" href="https://github.com/yousofalgburi" aria-label="GitHub" icon={<FaGithub fontSize="1.25rem" />} />
+                <IconButton target="_blank" as="a" href="https://github.com/yousofalgburi" aria-label="GitHub" icon={<FaGithub fontSize="1.25rem" />} />
             </ButtonGroup>
         </HStack>
     </Container>
