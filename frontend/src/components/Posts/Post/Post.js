@@ -1,7 +1,6 @@
 import { useDispatch } from 'react-redux'
 import moment from 'moment'
 import { likePost, deletePost } from '../../../actions/posts'
-import styles from './Post.module.css'
 import { useHistory } from 'react-router-dom'
 
 const Post = ({ post, setCurrentId }) => {
@@ -27,21 +26,21 @@ const Post = ({ post, setCurrentId }) => {
       }
 
     return (
-        <div className={styles.card}>
-          <div className={styles.imgContainer} onClick={openPost}>
+        <div>
+          <div onClick={openPost}>
             <img src={post.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png' } />
-            <div className={styles.top_left}>
+            <div>
               <h3>Created by {post.name}</h3>
               <p>{moment(post.createdAt).fromNow()}</p>
             </div>
           </div>
           
-          <div className={styles.container}>
+          <div>
             <section><h3>{post.title}</h3></section>
             <section><p>{post.message}</p></section>
 
-            <div className={styles.buttons}>
-              <button style={{color: 'green'}} onClick={() => dispatch(likePost(post._id))}><Likes/></button>
+            <div>
+              <button onClick={() => dispatch(likePost(post._id))}><Likes/></button>
               {(user?.result?._id === post?.creator) && (
                 <button size="small" color="secondary" onClick={() => dispatch(deletePost(post._id))}>Delete</button>
               )}

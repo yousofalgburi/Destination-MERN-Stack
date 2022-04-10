@@ -1,8 +1,6 @@
-import styles from './Footer.module.css'
-
 const Footer = () => {
     return (
-        <div className={styles.container}>
+        <div>
             <h4>&copy;2021 Yousof Algburi</h4>
         </div>
     )

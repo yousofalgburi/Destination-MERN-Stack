@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { signin, signup } from '../../actions/auth'
-import styles from './Auth.module.css'
 
 const Auth = () => {
     const [form, setForm] = useState({ firstName: '', lastName: '', email: '', password: '', confirmPassword: '' })
@@ -28,20 +27,20 @@ const Auth = () => {
     const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
     return (
-        <div className={styles.container}>
-            <form className={styles.form} onSubmit={handleSubmit}>
-                <h1 className={styles.heading}>{ isSignup ? 'Sign up' : 'Sign in' }</h1>
+        <div>
+            <form onSubmit={handleSubmit}>
+                <h1>{ isSignup ? 'Sign up' : 'Sign in' }</h1>
                 <div>
                     { isSignup && (
                         <>
                             <div>
                                 <label htmlFor='firstname'>First Name</label>
-                                <input id='firstname' placeholder='first name' className={styles.firstname} type='text' name='firstName' onChange={handleChange} required/>  
+                                <input id='firstname' placeholder='first name' type='text' name='firstName' onChange={handleChange} required/>  
                             </div>
 
                             <div>
                                 <label htmlFor='lastname'>Last Name</label>
-                                <input id='lastname' placeholder='last name' className={styles.lastname} type='text' name='lastName' onChange={handleChange} required/>
+                                <input id='lastname' placeholder='last name' type='text' name='lastName' onChange={handleChange} required/>
                             </div>
                         </>
                     )}
@@ -56,8 +55,8 @@ const Auth = () => {
                     </div>
                 </div>
 
-                <button className={styles.button} type='submit'>{isSignup ? 'Signup' : 'Signin'}</button>
-                <button className={styles.button}  onClick={switchMode}>{ isSignup ? 'Sign In Instead' : 'Signup Instead'}</button>
+                <button type='submit'>{isSignup ? 'Signup' : 'Signin'}</button>
+                <button onClick={switchMode}>{ isSignup ? 'Sign In Instead' : 'Signup Instead'}</button>
             </form>
         </div>
     )

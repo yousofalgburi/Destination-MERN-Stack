@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import FileBase from 'react-file-base64'
 import { createPost, updatePost } from '../../actions/posts'
-import styles from './Form.module.css'
 
 const Form = ({ currentId, setCurrentId }) => {
     const [postData, setPostData] = useState({ title: '', message: '', selectedFile: '' })
@@ -40,9 +39,9 @@ const Form = ({ currentId, setCurrentId }) => {
       }
 
     return (
-      <div className={styles.form}>
+      <div>
           <form onSubmit={handleSubmit}>
-              <h2 className={styles.heading}>{currentId ? `Editing "${post.title}"` : 'Creating a Post'}</h2>
+              <h2>{currentId ? `Editing "${post.title}"` : 'Creating a Post'}</h2>
               <div>
                   <label htmlFor='title'>Title</label>
                   <input maxLength={20} required type='text' name='title' id='title' value={postData.title} onChange={(e) => setPostData({ ...postData, title: e.target.value})} />
@@ -57,10 +56,10 @@ const Form = ({ currentId, setCurrentId }) => {
                   <FileBase type="file" multiple={false} onDone={({ base64 }) => setPostData({ ...postData, selectedFile: base64 })} />
               </div>
 
-              <button className={styles.button} type='submit'>Submit</button>
+              <button type='submit'>Submit</button>
           </form>
 
-          <button style={{ width: '50%', backgroundColor: 'red' }} className={styles.button} onClick={clear}>Clear</button>
+          <button style={{ width: '50%', backgroundColor: 'red' }} onClick={clear}>Clear</button>
         </div>
     )
 }

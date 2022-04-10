@@ -5,7 +5,6 @@ import { getPosts, getPostsBySearch } from '../../actions/posts'
 import Posts from '../Posts/Posts'
 import Form from '../Form/Form'
 import Pagination from '../Pagination'
-import styles from './Home.module.css'
 
 function useQuery() {
     return new URLSearchParams(useLocation().search)
@@ -36,18 +35,18 @@ const Home = () => {
     }
 
     return (
-        <div className={styles.layout}>
-            <div className={styles.container}>
+        <div>
+            <div>
                 <section>
                     <Posts setCurrentId={setCurrentId} />
                 </section>
 
-                <section className={styles.secondContainer}>
-                    <div className={styles.searchContainer}>
+                <section>
+                    <div>
                         {!searchQuery && (
                             <Pagination page={page} />
                         )}
-                        <div className={styles.searchBar}>
+                        <div>
                             <p>Search by title</p>
                             <input onKeyPress={handleKeyPress} name='search' value={search} onChange={(e) => {setSearch(e.target.value)}} />
                             <button onClick={searchPost}>Search</button>

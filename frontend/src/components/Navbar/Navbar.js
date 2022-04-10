@@ -3,7 +3,6 @@ import { Link, useHistory, useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import decode from 'jwt-decode'
 import * as actionType from '../../constants/actionTypes'
-import styles from './Navbar.module.css'
 
 const Navbar = () => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')))
@@ -28,10 +27,10 @@ const Navbar = () => {
 
     return (
         <>
-            <ul className={styles.ul}>
-                <li><Link className={styles.link_} to='/'>Destination</Link></li>
+            <ul>
+                <li><Link to='/'>Destination</Link></li>
                 
-                <div style={{ float: 'right'}} className={styles.second}>
+                <div style={{ float: 'right'}}>
                     { user?.result ? (
                         <>
                             <h2>Welcome! {user?.result.name}</h2>

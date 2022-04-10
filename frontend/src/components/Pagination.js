@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPosts } from '../actions/posts'
 import { useHistory } from 'react-router-dom'
-import styles from './Pagination.module.css'
 
 const Pagination = ( { page } ) => {
     const { numberOfPages } = useSelector((state) => state.posts)
@@ -23,7 +22,7 @@ const Pagination = ( { page } ) => {
     }
     
     return (
-        <div className={styles.container}>
+        <div>
             <h1>Page: </h1>
             <select onChange={event => handleChange(event.target.value)}>
                 { totalPages.map((numberOfPages) => 

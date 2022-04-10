@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import moment from 'moment'
 import { useParams, useHistory } from 'react-router-dom'
 import { getPost } from '../../actions/posts'
-import styles from './PostDetails.module.css'
 
 const PostDetails = () => {
     const { post, posts, isLoading } = useSelector((state) => state.posts)
@@ -19,7 +18,7 @@ const PostDetails = () => {
     if(isLoading) return <h1 style={{ color: 'white' }}>Loading</h1>
 
     return (
-        <div className={styles.container}>
+        <div>
             <img src={post.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} />
             <section>
                 <p>Title: {post.title}</p>
