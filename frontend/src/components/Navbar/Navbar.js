@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { Link, useHistory, useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import decode from 'jwt-decode'
-import * as actionType from '../../constants/actionTypes'
+import { LOGOUT } from '../../constants/actionTypes'
+
+import { Box, Flex, Spacer, Heading, Button, Text } from '@chakra-ui/react'
 
 const Navbar = () => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')))
@@ -11,7 +13,7 @@ const Navbar = () => {
     const history = useHistory()
 
     const logout = () => {
-        dispatch({ type: actionType.LOGOUT })
+        dispatch({ type: LOGOUT })
         setUser(null)
         history.push('/auth')
     }
@@ -26,20 +28,26 @@ const Navbar = () => {
     }, [location])
 
     return (
-        <>
-            <ul>
-                <li><Link to='/'>Destination</Link></li>
-                
-                <div style={{ float: 'right'}}>
-                    { user?.result ? (
-                        <>
-                            <h2>Welcome! {user?.result.name}</h2>
-                            <button onClick={logout}>logout</button>
-                        </>
-                    ) : <li><Link to='/auth'>login/register</Link></li>}
-                </div>
-            </ul>
-        </>
+        <Flex bg="gray.600" p={3}>
+            <Box p='2'>
+                <Heading color="white" size='md'><Link to='/'>EsportsCenter</Link></Heading>
+            </Box>
+
+            <Spacer />
+
+            <Box>
+                {user?.result ? (
+                    <>
+                        <Text>Welcome! {user?.result.name}</Text>
+                        <Button onClick={logout}>Logout</Button>
+                    </>
+                ) : (
+                    <>
+                        <Button colorScheme='teal' mr='4'><Link to='/auth'>Sign Up / Log in</Link></Button>
+                    </>
+                )}
+            </Box>
+        </Flex>
     )
 }
 
