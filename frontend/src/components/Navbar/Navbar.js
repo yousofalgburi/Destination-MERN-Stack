@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import decode from 'jwt-decode'
 import { LOGOUT } from '../../constants/actionTypes'
 
-import { Box, Flex, Spacer, Heading, Button, Text } from '@chakra-ui/react'
+import { Box, Flex, Spacer, Heading, Button, Text, HStack } from '@chakra-ui/react'
 import { ColorModeSwitcher } from '../../ColorModeSwitcher'
 
 const Navbar = () => {
@@ -21,7 +21,7 @@ const Navbar = () => {
     
     useEffect(() => {
         const token = user?.token
-
+        
         if (token) {
           const decodedToken = decode(token)
 
@@ -29,7 +29,6 @@ const Navbar = () => {
             logout()
           }
         }
-
         setUser(JSON.parse(localStorage.getItem('profile')))
     }, [location])
 
@@ -42,17 +41,19 @@ const Navbar = () => {
             <Spacer />
 
             <Box>
-                <ColorModeSwitcher mr={3} />
-                {user?.result ? (
-                    <>
-                        <Text>Welcome! {user?.result.name}</Text>
-                        <Button onClick={logout}>Logout</Button>
-                    </>
-                ) : (
-                    <>
-                        <Button colorScheme='teal' mr='4'><Link to='/auth'>Sign Up / Log in</Link></Button>
-                    </>
-                )}
+                <HStack>
+                    <ColorModeSwitcher />
+                    {user?.result ? (
+                        <>
+                            <Text color="whiteAlpha.900">Welcome! {user?.result.name}</Text>
+                            <Button onClick={logout}>Logout</Button>
+                        </>
+                    ) : (
+                        <>
+                            <Button colorScheme='teal' mr='4'><Link to='/auth'>Sign Up / Log in</Link></Button>
+                        </>
+                    )}
+                </HStack>
             </Box>
         </Flex>
     )

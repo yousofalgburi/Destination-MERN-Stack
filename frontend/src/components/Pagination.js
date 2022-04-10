@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPosts } from '../actions/posts'
 import { useHistory } from 'react-router-dom'
+import { Heading, HStack, Select } from '@chakra-ui/react'
 
 const Pagination = ( { page } ) => {
     const { numberOfPages } = useSelector((state) => state.posts)
@@ -22,14 +23,14 @@ const Pagination = ( { page } ) => {
     }
     
     return (
-        <div>
-            <h1>Page: </h1>
-            <select onChange={event => handleChange(event.target.value)}>
+        <HStack>
+            <Heading size="md">Page:</Heading>
+            <Select onChange={event => handleChange(event.target.value)}>
                 { totalPages.map((numberOfPages) => 
                     <option key={numberOfPages} value={numberOfPages}>{numberOfPages}</option>                    
                 )}
-            </select>
-        </div>
+            </Select>
+        </HStack>
     )
 }
 

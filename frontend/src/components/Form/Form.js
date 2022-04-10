@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import FileBase from 'react-file-base64'
 import { createPost, updatePost } from '../../actions/posts'
+import { Box, Button, FormLabel, Heading, Input, Text, Textarea } from '@chakra-ui/react'
 
 const Form = ({ currentId, setCurrentId }) => {
     const [postData, setPostData] = useState({ title: '', message: '', selectedFile: '' })
@@ -34,33 +35,28 @@ const Form = ({ currentId, setCurrentId }) => {
 
     if (!user?.result?.name) {
         return (
-          <h1 style={{ color: 'white'}}>Please Sign In to create your own memories and like other's memories.</h1>
+          <Text>Please Sign In to create a post or like/comment on a post.</Text>
         )
       }
 
     return (
-      <div>
+      <Box>
           <form onSubmit={handleSubmit}>
-              <h2>{currentId ? `Editing "${post.title}"` : 'Creating a Post'}</h2>
-              <div>
-                  <label htmlFor='title'>Title</label>
-                  <input maxLength={20} required type='text' name='title' id='title' value={postData.title} onChange={(e) => setPostData({ ...postData, title: e.target.value})} />
-              </div>
+              <Heading size="md">{currentId ? `Editing "${post.title}"` : 'Create a Post'}</Heading>
 
-              <div>
-                  <label htmlFor='message'>Message</label>
-                  <textarea maxLength={150} required type='text' name='message' id='message' value={postData.message} onChange={(e) => setPostData({ ...postData, message: e.target.value})} />
-              </div>
+              <FormLabel mt={3} htmlFor='title'>Title</FormLabel>
+              <Input maxLength={20} required type='text' name='title' id='title' value={postData.title} onChange={(e) => setPostData({ ...postData, title: e.target.value})} />
+
+              <FormLabel htmlFor='message'>Message</FormLabel>
+              <Textarea mb={2} maxLength={150} required type='text' name='message' id='message' value={postData.message} onChange={(e) => setPostData({ ...postData, message: e.target.value})} />
               
-              <div>
-                  <FileBase type="file" multiple={false} onDone={({ base64 }) => setPostData({ ...postData, selectedFile: base64 })} />
-              </div>
+              <FileBase type="file" multiple={false} onDone={({ base64 }) => setPostData({ ...postData, selectedFile: base64 })} />
 
-              <button type='submit'>Submit</button>
+              <Button mt={2} colorScheme="green" w="full" type='submit'>Submit</Button>
           </form>
 
-          <button style={{ width: '50%', backgroundColor: 'red' }} onClick={clear}>Clear</button>
-        </div>
+          <Button mt={2} colorScheme="red" w="full" onClick={clear}>Clear</Button>
+        </Box>
     )
 }
 

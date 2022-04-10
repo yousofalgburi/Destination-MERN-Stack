@@ -5,6 +5,7 @@ import { getPosts, getPostsBySearch } from '../../actions/posts'
 import Posts from '../Posts/Posts'
 import Form from '../Form/Form'
 import Pagination from '../Pagination'
+import { Box, Button, Center, Container, GridItem, Input, SimpleGrid, Text } from '@chakra-ui/react'
 
 function useQuery() {
     return new URLSearchParams(useLocation().search)
@@ -19,12 +20,6 @@ const Home = () => {
     const searchQuery = query.get('searchQuery')
     const [search, setSearch] = useState('')
 
-    const handleKeyPress = (e) => {
-        if(e.keyCode === 13) {
-            searchPost()
-        }
-    }
-
     const searchPost = () => {
         if(search.trim()) {
             dispatch(getPostsBySearch({ search }))
@@ -35,27 +30,26 @@ const Home = () => {
     }
 
     return (
-        <div>
-            <div>
-                <section>
-                    <Posts setCurrentId={setCurrentId} />
-                </section>
+        <Container maxW="container.2xl" mt={3}>
+            <Center>
+                <Box border='1px' borderColor='gray.200' boxShadow='lg' rounded='md' p={5}>
+                    <SimpleGrid columns={2} spacing={10}>
+                        <GridItem colSpan={[2, 2, 1]}>
+                            {!searchQuery && (<Pagination page={page} />)}
+                            <Text mt={3}>Search by title</Text>
+                            <Input mt={1} name='search' value={search} onChange={(e) => {setSearch(e.target.value)}} />
+                            <Button mt={3} w="full" onClick={searchPost}>Search</Button>
+                        </GridItem>
 
-                <section>
-                    <div>
-                        {!searchQuery && (
-                            <Pagination page={page} />
-                        )}
-                        <div>
-                            <p>Search by title</p>
-                            <input onKeyPress={handleKeyPress} name='search' value={search} onChange={(e) => {setSearch(e.target.value)}} />
-                            <button onClick={searchPost}>Search</button>
-                        </div>                      
-                    </div>
-                    <Form currentId={currentId} setCurrentId={setCurrentId} />
-                </section>
-            </div>
-        </div>
+                        <GridItem colSpan={[2, 2, 1]}>
+                            <Form currentId={currentId} setCurrentId={setCurrentId} />
+                        </GridItem>
+                    </SimpleGrid>
+                </Box>
+            </Center>
+
+            <Posts setCurrentId={setCurrentId} />
+        </Container>
     )
 }
 
