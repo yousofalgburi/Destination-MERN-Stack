@@ -3,11 +3,11 @@ import theme from './theme';
 import { ChakraProvider } from '@chakra-ui/provider';
 
 // PAGE COMPONENETS
-import Home from './components/Home/Home';
+import Home from './components/Home';
 import Footer from './components/Footer';
-import Navbar from './components/Navbar/Navbar';
-import Auth from './components/Auth/Auth';
-import PostDetails from './components/PostDetails/PostDetails'
+import Navbar from './components/Navbar';
+import Auth from './components/Auth';
+import PostDetails from './components/PostDetails'
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem('profile'))

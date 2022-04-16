@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import moment from 'moment'
 import { useParams, useHistory } from 'react-router-dom'
-import { getPost } from '../../actions/posts'
+import { getPost } from '../actions/posts'
 
 const PostDetails = () => {
     const { post, posts, isLoading } = useSelector((state) => state.posts)

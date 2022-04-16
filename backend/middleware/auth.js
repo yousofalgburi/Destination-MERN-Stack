@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken"
-const secret = process.env.secret || 'secert'
+const secret = process.env.secret || "secert"
 
 const auth = async (req, res, next) => {
   try {
@@ -7,10 +7,10 @@ const auth = async (req, res, next) => {
     const isCustomAuth = token.length < 500
     let decodedData
 
-    if (token && isCustomAuth) {      
+    if (token && isCustomAuth) {
       decodedData = jwt.verify(token, secret)
       req.userId = decodedData?.id
-    }  
+    }
 
     next()
   } catch (error) {

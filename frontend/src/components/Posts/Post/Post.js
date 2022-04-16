@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux'
 import moment from 'moment'
 import { likePost, deletePost } from '../../../actions/posts'
 import { useHistory } from 'react-router-dom'
-import { Box, Button, Grid, GridItem, Image, SimpleGrid, Text, VStack } from '@chakra-ui/react'
+import { Box, Button, GridItem, Image, SimpleGrid, Text, VStack } from '@chakra-ui/react'
 
 const Post = ({ post, setCurrentId }) => {
     const dispatch = useDispatch()

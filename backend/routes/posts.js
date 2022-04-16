@@ -1,14 +1,26 @@
-import express from 'express'
-import { getPostsBySearch, getPosts, getPost, createPost, updatePost, likePost, deletePost } from '../controllers/posts.js'
+import express from "express"
+import * as controllers from "../controllers/posts.js"
 const router = express.Router()
 import auth from "../middleware/auth.js"
 
-router.get('/search', getPostsBySearch)
-router.get('/', getPosts)
-router.get('/:id', getPost)
-router.post('/',auth,  createPost)
-router.patch('/:id', auth, updatePost)
-router.delete('/:id', auth, deletePost)
-router.patch('/:id/likePost', auth, likePost)
+/* 
+  [ 
+    getPostsBySearch
+    getPosts
+    getPost
+    createPost
+    updatePost
+    likePost
+    deletePost
+  ]
+*/
+
+router.get("/search", controllers.getPostsBySearch)
+router.get("/", controllers.getPosts)
+router.get("/:id", controllers.getPost)
+router.post("/", auth, controllers.createPost)
+router.patch("/:id", auth, controllers.updatePost)
+router.delete("/:id", auth, controllers.deletePost)
+router.patch("/:id/likePost", auth, controllers.likePost)
 
 export default router

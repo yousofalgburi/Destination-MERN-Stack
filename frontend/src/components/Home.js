@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory, useLocation } from 'react-router-dom'
-import { getPosts, getPostsBySearch } from '../../actions/posts'
-import Posts from '../Posts/Posts'
-import Form from '../Form/Form'
-import Pagination from '../Pagination'
+import { getPosts, getPostsBySearch } from '../actions/posts'
+import Posts from './Posts/Posts'
+import Form from './Form'
+import Pagination from './Pagination'
 import { Box, Button, Center, Container, GridItem, Input, SimpleGrid, Text } from '@chakra-ui/react'
 
 function useQuery() {
