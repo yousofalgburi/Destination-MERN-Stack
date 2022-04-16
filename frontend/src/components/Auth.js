@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { signin, signup } from "../actions/auth"
 import {
   FormLabel,
@@ -33,7 +33,7 @@ const Auth = () => {
   const [show2, setShow2] = useState(false)
   const [passwordMatch, setPasswordMatch] = useState(false)
   const dispatch = useDispatch()
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const switchMode = () => {
     setForm({
@@ -55,9 +55,9 @@ const Auth = () => {
     }
 
     if (isSignup) {
-      dispatch(signup(form, history))
+      dispatch(signup(form, navigate))
     } else {
-      dispatch(signin(form, history))
+      dispatch(signin(form, navigate))
     }
   }
 
